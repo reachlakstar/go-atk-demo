@@ -74,6 +74,6 @@ http://localhost:8090/swagger
 ## Sample API
 ```
 # run the API
-make run-api # change the end point in the Makefile
+make run-api-project # change the end point in the Makefile
 
 ```
