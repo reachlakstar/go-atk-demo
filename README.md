@@ -2,6 +2,7 @@
 
 This is the GO ATK Demo API Project built using Go-API Tool Kit
 
+![ATK Architecture](Arch.png)
 
 # Prereqs
 
