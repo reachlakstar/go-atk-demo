@@ -60,7 +60,7 @@ up-gwy: build-gateway run-gwy ## Run the gateway
 
 # DOCKER TASKS
 # Build the container
-build-all: proto build-gateway build-api-project
+build-all: proto merge-swag build-gateway build-api-project
 build-gateway: ## Build the Docker Image for gateway
 	docker build -f .deploy/gateway/Dockerfile -t ${GW_NAME} .
 
@@ -95,7 +95,6 @@ tag-all: tag-gwy tag-api-project
 tag-gwy: tag-gwy-version tag-gwy-latest  ## Generate container tags for the `{version}` ans `latest` tags
 
 tag-gwy-latest: ## Generate container `{version}` tag
-	@echo 'create tag gateway latest'
 	docker tag $(DOCKER_REPO)/$(GW_NAME):$(VERSION) $(DOCKER_REPO)/$(GW_NAME):latest
 
 tag-gwy-version: ## Generate container `latest` tag
@@ -116,7 +115,8 @@ tag-api-project-version: ## Generate container `latest` tag
 
 # swagger merge
 merge-swag: ## Generate single swagger file
-	swagger mixin gateway/api/proto/gwy-project.swagger.json  -o ./gateway/api/proto/swagger.json
+	# swagger mixin gateway/api/proto/gwy-project.swagger.json  -o ./gateway/api/proto/swagger.json
+	mv ./gateway/api/proto/gwy-project.swagger.json ./gateway/api/proto/swagger.json
 
 # Docker run
 run-gwy: ## Run Gateway
