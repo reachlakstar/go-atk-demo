@@ -11,8 +11,10 @@ import (
 	"github.com/micro/go-log"
 	api "github.com/lakstap/go-atk-demo/gateway/api/proto"
 	"fmt"
+	"strings"
 )
-
+// Url Path parameters
+var urlPath = []string{"project"}
 func main() {
 	flag.Parse()
 	flag.Set("logtostderr", "true")
@@ -24,7 +26,7 @@ func main() {
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
-
+	urlString := strings.Join(urlPath, ":")
 	/*
 	 * create the ATK Gateway using the ATK Api
 	 * runs on localhost port 8080
@@ -34,7 +36,7 @@ func main() {
 		atk.WithEndpointHandlerOption(api.RegisterATKProjectHandlerFromEndpoint))
 
 	// Run service
-	if err := gateway.RunGateway(ctx); err != nil {
+	if err := gateway.RunGateway(ctx,false,urlString,false); err != nil {
 		log.Fatal(err)
 	}
 }
