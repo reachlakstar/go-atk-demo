@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package go.micro.srv.atk.api;
+
+import "google/api/annotations.proto";
+import "protoc-gen-swagger/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+    info: {
+        title: "GO API Tool Kit (ATK)";
+        version: "1.0";
+        contact: {
+          name: "GRPC API project";
+          url: "https://github.com/lakstap/go-atk";
+          email: "";
+        };
+    };
+    security_definitions: {
+         security: {
+              key: "OAuth2";
+              value: {
+                type: TYPE_OAUTH2;
+        	    flow: FLOW_IMPLICIT;
+        	    authorization_url: "";
+        	    token_url: "";
+              }
+            }
+
+    }
+   security: {
+       security_requirement: {
+         key: "OAuth2";
+         value: {
+            scope: "read";
+         }
+       }
+     }
+};
+
+service ATKProject {
+
+	rpc GetHelloWorld(HelloWorldRequest) returns (HelloWorldResponse) {
+        option (google.api.http) = {
+        			post: "/project/search"
+        			body: "*"
+        };
+    }
+
+}
+
+message HelloWorldRequest {
+  string message = 1;
+}
+
+// The response message containing the welcome plus input message
+message HelloWorldResponse {
+    string message  = 1;
+}

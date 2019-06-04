@@ -1,0 +1,81 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "GO API Tool Kit (ATK)",
+    "version": "1.0",
+    "contact": {
+      "name": "GRPC API project",
+      "url": "https://github.com/lakstap/go-atk"
+    }
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/project/search": {
+      "post": {
+        "operationId": "GetHelloWorld",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiHelloWorldResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiHelloWorldRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ATKProject"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiHelloWorldRequest": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "apiHelloWorldResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "The response message containing the welcome plus input message"
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "flow": "implicit"
+    }
+  },
+  "security": [
+    {
+      "OAuth2": [
+        "read"
+      ]
+    }
+  ]
+}

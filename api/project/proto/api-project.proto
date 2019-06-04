@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package go.micro.srv.atk.api.project;
+
+service ATKProject {
+
+	rpc GetHelloWorld(HelloWorldRequest) returns (HelloWorldResponse) {
+    }
+
+}
+
+message HelloWorldRequest {
+  string message = 1;
+}
+
+// The response message containing the welcome plus input message
+message HelloWorldResponse {
+    string message = 1;
+}
