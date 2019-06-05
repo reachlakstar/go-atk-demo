@@ -119,7 +119,7 @@ merge-swag: ## Generate single swagger file
 	mv ./gateway/api/proto/gwy-project.swagger.json ./gateway/api/proto/swagger.json
 
 # Docker run
-run-gwy: ## Run Gateway
+run-gwy: ## Run Gateway Replace the end point
 	docker run -it --rm --env-file=./deploy.env -p=8090:8090 $(GW_NAME) --endpoint=0.0.0.0:9090 --swagger_dir=/go/gateway/api/proto/
 
 run-api-project: ## Run API

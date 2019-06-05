@@ -17,6 +17,7 @@ func main() {
 	apiService := atk.NewATKGrpcService(atk.ATKGrpcServiceOption{
 		ServiceName: "go.micro.srv.atk.api.project",
 		Version:     "latest",
+		Address:     ":9090",
 	})
 
 	// Register Handler
